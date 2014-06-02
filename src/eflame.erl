@@ -14,7 +14,7 @@ apply(Mode, OutputFile, M, F, A) ->
     Return = (catch erlang:apply(M, F, A)),
     {ok, Bytes} = stop_trace(Tracer, self()),
 
-    ok = file:write_file(OutputFile, Bytes),
+    ok = file:write_file(OutputFile, Bytes, [append]),
     Return.
 
 start_trace(Tracer, Target, Mode) ->
